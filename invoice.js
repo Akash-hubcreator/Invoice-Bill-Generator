@@ -1,11 +1,42 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Set today's date in the invoice form
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('invoiceDate').value = today;
-    
+
     // Attach event listener for Add Item button
     const addItemBtn = document.getElementById('addItemBtn');
-    addItemBtn.addEventListener('click', addInvoiceItem);
+    if (addItemBtn) {
+        addItemBtn.addEventListener('click', addInvoiceItem);
+    }
+
+    // Handle login
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            handleLogin();
+        });
+    }
 });
+
+function handleLogin() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Set the correct username and password
+    const correctUsername = "akash";
+    const correctPassword = "Akash@1603";
+
+    if (username === correctUsername && password === correctPassword) {
+        alert("Login successful!");
+
+        // Show invoice form and hide login form
+        document.getElementById('loginContainer').style.display = 'none';
+        document.getElementById('invoiceContainer').style.display = 'block';
+    } else {
+        alert("Invalid username or password. Please try again.");
+    }
+}
 
 let itemCounter = 0;
 
@@ -29,23 +60,18 @@ function addInvoiceItem() {
         <td><button type="button" class="btn btn-danger" onclick="removeInvoiceItem(${itemCounter})">Remove</button></td>
     </tr>`;
     
-    // Append the new item row to the table
     document.getElementById("invoiceItems").insertAdjacentHTML('beforeend', newItemRow);
-    
     updateTotalAmount();
 }
 
 function removeInvoiceItem(itemId) {
-    // Remove the row corresponding to the item ID
     document.getElementById(`ItemRow${itemId}`).remove();
-    
     updateTotalAmount();
 }
 
 function updateTotalAmount() {
     let totalAmount = 0;
 
-    // Iterate over each row and calculate the total amount
     document.querySelectorAll(".quantity").forEach(function (quantityInput, index) {
         const quantity = parseFloat(quantityInput.value) || 0;
         const unitPrice = parseFloat(document.querySelectorAll(".unitprice")[index].value) || 0;
