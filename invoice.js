@@ -83,3 +83,47 @@ function updateTotalAmount() {
 
     document.getElementById("totalAmount").value = totalAmount.toFixed(2);
 }
+
+function shareInvoice() {
+    // Get invoice details
+    let customerName = document.getElementById('customerName').value || "Customer";
+    let invoiceDate = document.getElementById('invoiceDate').value || "Date Not Available";
+    let totalAmount = document.getElementById('totalAmount').value || "0.00";
+    
+    // Generate invoice content
+    let invoiceText = `Invoice Details:\nCustomer: ${customerName}\nDate: ${invoiceDate}\nTotal: ₹${totalAmount}\n\n- Sent via AKASH AQUA ENTERPRISES`;
+
+    // Create WhatsApp share link
+    let whatsappLink = `https://wa.me/?text=${encodeURIComponent(invoiceText)}`;
+
+    // Create mailto link for email sharing
+    let emailSubject = "Invoice from AKASH AQUA ENTERPRISES";
+    let emailBody = invoiceText;
+    let emailLink = `mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
+    // Copy link function
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Invoice copied to clipboard!");
+        }).catch(err => {
+            console.error("Could not copy text: ", err);
+        });
+    }
+
+    // Create share options dynamically
+    let shareOptions = `
+        <div id="shareOptions" class="mt-3">
+            <a href="${whatsappLink}" target="_blank" class="btn btn-success">Share via WhatsApp</a>
+            <a href="${emailLink}" class="btn btn-primary">Share via Email</a>
+            <button type="button" class="btn btn-secondary" onclick="copyToClipboard('${invoiceText}')">Copy to Clipboard</button>
+        </div>
+    `;
+
+    // Display share options
+    let invoiceContainer = document.getElementById("invoiceContainer");
+    let existingShareDiv = document.getElementById("shareOptions");
+    if (existingShareDiv) {
+        existingShareDiv.remove(); // Remove previous options if they exist
+    }
+    invoiceContainer.insertAdjacentHTML('beforeend', shareOptions);
+}
