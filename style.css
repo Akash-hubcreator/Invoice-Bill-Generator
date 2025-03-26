@@ -1,20 +1,10 @@
-#loginContainer {
-    max-width: 400px;
-    margin: 100px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#loginContainer h2 {
-    text-align: center;
-}
+/* General Body Styling */
 body {
     background-color: #e3f2fd;
     font-family: 'Poppins', sans-serif;
 }
 
+/* Main Container Styling */
 .container {
     background-color: white;
     padding: 30px;
@@ -23,19 +13,38 @@ body {
     margin-top: 30px;
 }
 
-h2 {
-    color: #052cf3;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding-bottom: 0px;
+/* Invoice Header - Logo & Title Alignment */
+.d-flex.align-items-center.justify-content-between {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers title and logos */
+    gap: 10px; /* Reduce space between logos and title */
 }
 
+/* Invoice Logos */
+.invoice-logo {
+    max-width: 60px;  /* Adjust logo size */
+    height: auto;
+}
+
+/* Invoice Title */
+h2 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 500;
+    color: #052cf3;
+    text-align: center;
+    margin: 0; /* Removes extra spacing */
+}
+
+/* Invoice Subtitle */
 h3 {
     color: #343a40;
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
+/* Table Styling */
 .table {
     margin-top: 20px;
     background-color: white;
@@ -44,8 +53,16 @@ h3 {
 th {
     background-color: #007bff;
     color: white;
+    text-align: center;
 }
 
+/* Form Input Fields */
+.form-control {
+    border-radius: 5px;
+    padding: 8px;
+}
+
+/* Buttons */
 .btn {
     font-size: 14px;
     padding: 8px 12px;
@@ -57,16 +74,17 @@ th {
     border: none;
 }
 
+.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+
 .btn-danger {
     background-color: #dc3545;
     border: none;
 }
 
-.btn-print {
-    background-color: #28a745;
-    color: white;
-}
-
+/* Total Amount Styling */
 #totalAmount {
     font-weight: bold;
     font-size: 20px;
