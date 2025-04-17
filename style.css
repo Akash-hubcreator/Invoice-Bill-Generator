@@ -2,6 +2,8 @@
 body {
     background-color: #e3f2fd;
     font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 /* Main Container Styling */
@@ -11,37 +13,38 @@ body {
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     margin-top: 30px;
+    margin-bottom: 30px;
 }
 
-/* Invoice Header - Logo & Title Alignment */
+/* Logo and Title Section */
 .d-flex.align-items-center.justify-content-between {
     display: flex;
     align-items: center;
-    justify-content: center; /* Centers title and logos */
-    gap: 10px; /* Reduce space between logos and title */
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 10px;
 }
 
-/* Invoice Logos */
+/* Logo Images */
 .invoice-logo {
-    max-width: 60px;  /* Adjust logo size */
+    max-width: 100px;
     height: auto;
 }
 
-/* Invoice Title */
+/* Title */
 h2 {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-weight: 500;
     color: #052cf3;
     text-align: center;
-    margin: 0; /* Removes extra spacing */
+    margin: 0;
 }
 
-/* Invoice Subtitle */
+/* Subtitle */
 h3 {
     color: #343a40;
     font-size: 12px;
     text-align: center;
-    margin-bottom: 15px;
+    margin: 0;
 }
 
 /* Table Styling */
@@ -56,17 +59,22 @@ th {
     text-align: center;
 }
 
-/* Form Input Fields */
+td {
+    vertical-align: middle;
+}
+
+/* Form Inputs */
 .form-control {
     border-radius: 5px;
     padding: 8px;
 }
 
-/* Buttons */
+/* Button Styles */
 .btn {
     font-size: 14px;
     padding: 8px 12px;
     border-radius: 5px;
+    margin-right: 5px;
 }
 
 .btn-primary {
@@ -91,12 +99,21 @@ th {
     color: #007bff;
 }
 
-/* Print Styles */
+/* Hide action column only on print */
 @media print {
-    .btn, th:last-child, td:last-child {
+    .btn,
+    th:last-child,
+    td:last-child {
         display: none !important;
     }
+
     body {
         background-color: white !important;
+    }
+
+    .container {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
     }
 }
